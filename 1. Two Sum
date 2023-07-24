@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target)
+     {
+        vector<int> result; //Stores return values
+        unordered_map<int, int> map; 
+        int missing; //Number we want in map
+
+        //After each iteration check if target - nums[i] is in hashmap
+        //If not had nums[i] to map and move on
+        //More efficent o(n) than brute force method
+        
+        for (int i = 0; i < nums.size(); i++) {
+            missing = target - nums[i];
+
+            if (map.find(missing) != map.end()) 
+            //If ittertor equals map.end(), missing not found
+             {
+                result.push_back(map[missing]);
+                result.push_back(i);
+                break;
+
+            }
+             else  map.insert({nums[i], i});
+        }
+             return result;
+     }
+    };
+   
