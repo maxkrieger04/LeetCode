@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> stackS;
+        for (auto i : s) //iterate through each character in string s
+        {
+            if (i == '(' || i == '[' || i == '{') //if bracket open, push to stack
+            stackS.push(i);
+
+            else if (stackS.empty()) return false; //Stack cannot be empty if i is not an open
+
+            else if (i == '}' || i == ']' || i == ')') //close, so pop must be the opening
+            {
+                if (stackS.top() == '(' && i != ')' || stackS.top() == '[' && i != ']'||               stackS.top() == '{' && i != '}') //Must be proper close to open
+                return false;
+
+                stackS.pop(); //Proper close, so remove 
+
+            }
+        }
+        if (stackS.empty()) return true;
+        return false;
+        
+    }
+};
+
+//Run time and memory usage o(n)
+//Iterates through string maximum size of string times
